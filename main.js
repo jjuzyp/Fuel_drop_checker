@@ -7,6 +7,12 @@ fs.readFile(filePath, 'utf8', (err, data) => {
     console.error('Error reading file:', err);
     return;
   }
+  
+  if (!data.trim()) {
+    console.log("Enter your wallet addresses into wallet.txt");
+    return;
+  }
+
   const wallets = data.trim().split('\n');
   let completedRequests = 0;
   let total = 0;
