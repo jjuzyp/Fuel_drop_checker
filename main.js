@@ -7,7 +7,7 @@ fs.readFile(filePath, 'utf8', (err, data) => {
     console.error('Error reading file:', err);
     return;
   }
-  
+
   if (!data.trim()) {
     console.log("Enter your wallet addresses into wallet.txt");
     return;
@@ -26,7 +26,7 @@ fs.readFile(filePath, 'utf8', (err, data) => {
       })
       .then(data => {
         if (data.allocations.length > 0){
-        ammount = Math.floor(data.allocations[0].amount/1000000000)
+        ammount = Math.floor(data.allocations[0].amount / 10000000) / 100;
         console.log(`For wallet ${wallet} Total: ${ammount}`);
         total += ammount;
     }else {
@@ -50,6 +50,6 @@ fs.readFile(filePath, 'utf8', (err, data) => {
   wallets.forEach((wallet, index) => {
     setTimeout(() => {
       checkWallet(wallet.trim());
-    }, index * 3000);
+    }, index * 1000);
   });
 });
